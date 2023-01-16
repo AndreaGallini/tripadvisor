@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Dishe extends Model
 {
     use HasFactory;
+
+    protected $fillble = ['name', 'image', 'price', 'description'];
+
+
 }
