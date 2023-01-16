@@ -24,7 +24,7 @@ class DisheSeeder extends Seeder
             $dish->name = $faker->sentence(2);
             $dish->img = $faker->image(null, 640, 480);
             $dish->price = $faker->numberBetween(0, 100);
-            $dish->description = $faker->sentence(10);
+            $dish->descrizione = $faker->sentence(10);
             $dish->save();
         }
     }

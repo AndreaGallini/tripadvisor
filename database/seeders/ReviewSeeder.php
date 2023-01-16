@@ -20,7 +20,7 @@ class ReviewSeeder extends Seeder
         for ($i = 0; $i < 10; $i++){
             $newreview = new Review;
             $newreview->title = $faker->sentence(5);
-            $newreview->text = $faker->sentence(30);
+            $newreview->text_review = $faker->sentence(30);
             $newreview->vote = $faker->numberBetween(0, 5);
             $newreview->save();
         }

@@ -20,7 +20,7 @@ class ActivitySeeder extends Seeder
         for($i = 0; $i < 5; $i++){
             $activity = new Activity();
             $activity->name = $faker->sentence(2);
-            $activity->address = $faker->address();
+            $activity->adress = $faker->address();
             $activity->img_cover = $faker->imageUrl(640, 480);
             $activity->slug = Str::slug($activity->name, '-');
             $activity->img = $faker->imageUrl(300, 300, 'animals');
