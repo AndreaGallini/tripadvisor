@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('adress');
+            $table->string('img_cover');
+            $table->string('slug');
+            $table->string('img')->nullable();
+            $table->string('price')->nullable();
+            $table->string('phone_number');
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
