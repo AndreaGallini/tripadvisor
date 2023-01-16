@@ -21,4 +21,5 @@ class Activity extends Model
     {
         return $this->hasMany(Review::class);
     }
+
 }
