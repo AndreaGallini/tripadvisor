@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Dishe extends Model
 {
@@ -11,5 +12,8 @@ class Dishe extends Model
 
     protected $fillble = ['name', 'image', 'price', 'description'];
 
-
+    public function dishCategory():BelongsTo
+    {
+       return $this->belongsTo(DishCategory::class);
+    }
 }
