@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import './partials/variables';
 
+
 //////////////////////////////
 
 // app.blade.php header tags
@@ -71,7 +72,6 @@
         text-decoration: underline;
     }
 }
-
 .loginheader{
     font-weight: 700;
 }
@@ -80,3 +80,13 @@
 }
 
 // end login.blade.php
+
+// welcome.blade.php
+    .carouselTest{
+        height: 200px;
+        img{
+            
+        }
+    }
+// end welcome.blade.php
+
