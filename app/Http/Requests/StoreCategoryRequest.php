@@ -13,7 +13,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:category|min:3|max:150',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Il nome della categoria è obbligatorio',
+            'name.unique:category' => 'Questa categoria è già esistente',
+            'name.min' => 'Il nome della categoria deve contenere almeno 3 caratteri',
+            'name.max' => 'Il nome della categoria deve contenere al massimo 150 caratteri'
         ];
     }
 }
