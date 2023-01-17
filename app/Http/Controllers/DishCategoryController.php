@@ -18,7 +18,7 @@ class DishCategoryController extends Controller
         $dishCategories = DishCategory::all();
 
         return view('', compact('dishCategories'));
-
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +38,7 @@ class DishCategoryController extends Controller
     public function store(StoreDishCategoryRequest $request)
     {
         $data = $request->validated();
-        $new_dishe = Dishe::create($data);
+        $new_dishe = DishCategory::create($data);
 
 
 

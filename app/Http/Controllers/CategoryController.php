@@ -83,7 +83,7 @@ class CategoryController extends Controller
         $category->update($data);
         return redirect()->route('')->with('message', "$category->name aggiunta con successo.");
     }
-    }
+
 
     /**
      * Remove the specified resource from storage.
