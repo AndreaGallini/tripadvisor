@@ -1,1 +1,82 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+@import './partials/variables';
+
+//////////////////////////////
+
+// app.blade.php header tags
+.collectoritems{
+    position: relative;
+    .logonavbar{
+        position: absolute;
+        left: 585px;
+    }
+}
+
+.btnloginhighlight{
+    background-color: $colordark;
+    color: $white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: .6rem 1.6rem .8rem 1.6rem;
+    border-radius: 1.5rem;
+    transition: all 250ms;
+    display: block;
+    border: 0px solid;
+    &:hover{
+        color: $colordark;
+        background-color: $color3;
+        box-shadow: 0px 0px 0px $colordark;
+    }
+}
+
+.navtext{
+    font-weight: 600;
+    color: $colordark;
+}
+
+.searchbox{
+    position: relative;
+    .navsearch{
+        padding: .3rem 1.4rem .4rem .8rem;
+        border-radius: 1.2rem;
+        background-color: $silversand;
+        border: 0px solid ;
+        outline: none;
+    }
+    .btnsearch{
+        background-color: $color3;
+        height: 2.1rem;
+        width: 2.3rem;
+        border-radius: 1.2rem;
+        position: absolute;
+        right: .02rem;
+        border: 0px solid ;
+    }
+}
+// end app.blade.php header tags
+
+//////////////////////////////
+
+// login.blade.php
+
+.pswforgott{
+    font-size: .8rem;
+    color: $color3;
+    text-shadow: 0px 1px 0px $grey1;
+    text-decoration: none;
+    transition: all 200ms;
+    font-weight: 600;
+    &:hover{
+        color: $color3;
+        text-decoration: underline;
+    }
+}
+
+.loginheader{
+    font-weight: 700;
+}
+.loginbody{
+    padding-top: 2rem;
+}
+
+// end login.blade.php
