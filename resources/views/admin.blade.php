@@ -15,7 +15,7 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <a href="{{ route('activities.create') }}">crea</a>
+                        <a href="{{ route('adminactivities.index') }}">index</a>
                     </div>
                 </div>
             </div>

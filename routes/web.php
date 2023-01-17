@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified'])->name('admin')->prefix('admin')
+->group(function(){
     Route::resource('activities',ActivityController::class)->parameters(['activities' => 'activity:slug']);
      Route::resource('categories',CategoryController::class)->parameters(['categories' => 'category:slug']);
      Route::resource('dishes',DisheController::class);

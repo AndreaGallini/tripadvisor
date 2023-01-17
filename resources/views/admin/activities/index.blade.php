@@ -1,11 +1,11 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
 @section('content')
-@if(session()->has('message'))
+@if (session()->has('message'))
         <div class="custom-alert alert alert-success mb-3 mt-3">
             <div class="alert-inner d-flex align-items-center">
                 <div class="icon-change me-4">
-                    @if(Str::contains(session()->get('message'), 'deleted'))
+                    @if (Str::contains(session()->get('message'), 'deleted'))
                     <i class="fa-solid fa-trash"></i>
                     @else
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -19,7 +19,7 @@
     <section class="index-table">
         <div class="table-inner d-flex flex-column align-items-center">
             <div class="items-wrapper d-flex flex-wrap w-100">
-            @foreach($activities as $activity)
+            @foreach ($activities as $activity)
                     <div class="item d-flex flex-column justify-content-between align-items-center">
 
                         <div class="id-title d-flex justify-content-between align-items-center">
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="project-preview-pic">
-                            @if(Str::startsWith($activity->image_cover, 'https://'))
+                            @if (Str::startsWith($activity->image_cover, 'https://'))
                             <img src="{{$project->image_cover}}" alt="">
                             @elseif(Str::startsWith($activity->image_cover, 'activity'))
                             <img src="{{ asset('storage/' . $activity->image_cover) }}" alt="{{$activity->name}}">
@@ -47,7 +47,7 @@
 
                         {{-- <div>{{Str::limit($activity->description,100)}}</div> --}}
 
-                        <div class="item-bottom d-flex justify-content-between">
+{{-- <div class="item-bottom d-flex justify-content-between">
                             <div class="d-flex align-items-center">
                                 <div><a class="edit-btn d-flex justify-content-center align-items-center" href="{{route('admin.activities.edit', $activity->slug)}}" title="Edit Activity"><i class="fa-solid fa-pen"></i></a></div>
                                 <div>
@@ -58,26 +58,33 @@
                                  </form>
                                 </div>
                             </div>
-                            <div class="d-flex flex-column align-items-end justify-content-around">
-                                {{-- <div>
+                            <div class="d-flex flex-column align-items-end justify-content-around"> --}}
+{{-- <div>
                                     <i class="fa-solid fa-folder-open me-2"></i>
                                     {{$activity->category ? $activity->category->name : 'Senza categoria'}}
                                 </div> --}}
-                                {{-- <div class="reviews">
-                                    @foreach($activity->reviews as $reviews)
+{{-- <div class="reviews">
+                                    @foreach ($activity->reviews as $reviews)
                                         <span class="tag rounded-pill text-uppercase" style="color: {{ $tag->tag_color }}; border-color: {{ $tag->tag_color }}">{{$tag->name}}</span>
                                     @endforeach
                                 </div> --}}
-                            </div>
+{{-- </div>
                         </div>
                     </div>
             @endforeach
             </div>
-        </div>
-        {{-- <div class="pages">
+        </div> --}}
+{{-- <div class="pages">
             {{$activity->links('vendor.pagination.bootstrap-5')}}
         </div> --}}
-    </section>
+{{-- </section>
 
 
+@endsection --}}
+@extends('layouts.admin')
+@section('content')
+    <h1>index</h1>
+    @foreach ($activities as $activity)
+        <p>{{ $activity->name }}</p>
+    @endforeach
 @endsection
