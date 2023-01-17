@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DishCategoryController;
 use App\Http\Controllers\DisheController;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function(){
      Route::resource('dishes',DisheController::class);
     Route::resource('dishCategory',DishCategoryController::class);
     Route::resource('reviews',ReviewController::class);
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 
 });

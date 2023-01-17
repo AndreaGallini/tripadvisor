@@ -3,6 +3,14 @@
 
 //////////////////////////////
 
+#carouselTest{
+    background-color: black;
+    img{
+        width: 300px;
+        height: 300px;
+    }
+}
+
 // app.blade.php header tags
 .collectoritems{
     position: relative;
