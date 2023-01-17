@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DishCategoryController;
 use App\Http\Controllers\DisheController;
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+<<<<<<< HEAD
 Route::middleware('auth')->group(function () {
     Route::resource('activities', ActivityController::class)->parameters(['activities' => 'activity:slug']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
@@ -40,6 +42,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('dishCategory', DishCategoryController::class);
     Route::resource('reviews', ReviewController::class);
     Route::get('/guest', [GuestController::class, 'index'])->name('guest');
+=======
+Route::middleware('auth')->group(function(){
+    Route::resource('activities',ActivityController::class)->parameters(['activities' => 'activity:slug']);
+     Route::resource('categories',CategoryController::class)->parameters(['categories' => 'category:slug']);
+     Route::resource('dishes',DisheController::class);
+    Route::resource('dishCategory',DishCategoryController::class);
+    Route::resource('reviews',ReviewController::class);
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+
+>>>>>>> views-lato-admin
 });
 
 require __DIR__ . '/auth.php';
