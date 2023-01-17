@@ -11,14 +11,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     {{-- fontawesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- js --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -30,9 +34,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white {{--shadow-sm--}}">
+        <nav class="navbar navbar-expand-md navbar-light bg-white {{-- shadow-sm --}}">
             <div class="container collectoritems">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -48,51 +54,55 @@
                     <ul class="navbar-nav ">
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item">
-                            <a class="btnloginhighlight" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        {{-- @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="btnloginhighlight" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link navtext" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif --}}
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link navtext" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa-solid fa-user"></i> {{--{{ Auth::user()->name }}--}}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link navtext" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa-solid fa-user"></i> {{-- {{ Auth::user()->name }} --}}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <a id="navbarDropdown" class="nav-link navtext" href="#">
-                                <i class="fa-solid fa-heart"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="navbarDropdown" class="nav-link navtext" href="#">
-                                <i class="fa-solid fa-pencil"></i>
-                            </a>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('admin') }}">{{ __('admin') }}</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <a id="navbarDropdown" class="nav-link navtext" href="#">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="navbarDropdown" class="nav-link navtext" href="#">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
-                     {{-- CENTERED LOGO --}}
-                     <a class="d-flex align-items-center logonavbar" href="{{ url('/') }}">
-                        <div class="logo_laravel">
-                             <svg viewBox="0 0 3400 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 150px">
-                                <g fill="#101820">
-                                                    <path d="M3335.258,476.767c-10.404,0-18.854,8.45-18.854,18.854c0,10.404,8.449,18.854,18.854,18.854
+                {{-- CENTERED LOGO --}}
+                <a class="d-flex align-items-center logonavbar" href="{{ url('/') }}">
+                    <div class="logo_laravel">
+                        <svg viewBox="0 0 3400 800" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="width: 150px">
+                            <g fill="#101820">
+                                <path
+                                    d="M3335.258,476.767c-10.404,0-18.854,8.45-18.854,18.854c0,10.404,8.449,18.854,18.854,18.854
                                                         c10.402,0,18.854-8.45,18.854-18.854C3354.111,485.217,3345.66,476.767,3335.258,476.767z M3335.258,511.485
                                                         c-8.77,0-15.865-7.136-15.865-15.864c0-8.77,7.135-15.864,15.865-15.864c8.77,0,15.904,7.135,15.904,15.864
                                                         C3351.162,504.35,3344.027,511.485,3335.258,511.485z M3341.396,492.392c0-3.428-2.432-5.461-6.02-5.461h-6.02v17.18h2.949v-6.218
@@ -124,9 +134,10 @@
                                                         C3064.646,452.173,3098.768,418.093,3098.768,376z M1027.793,143.815H760.212v62.222h99.053v305.607h69.516V206.037h99.053v-62.222
                                                         H1027.793z M2381.006,437.345l-62.062-196.988h-73.264l93.074,271.288h83.945l93.631-271.288h-73.264L2381.006,437.345z
                                                          M3265.023,285.956v-45.6h-69.914v271.288h69.914V348.976c0-29.457,18.895-43.927,48.35-43.927h38.266v-64.692h-32.684
-                                                        C3293.363,240.356,3271.162,253.709,3265.023,285.956z"/>
-                                                    <circle fill="#F3D03E" cx="356.749" cy="356.748" r="356.748"/>
-                                                    <path d="M577.095,287.152l43.049-46.836h-95.465c-47.792-32.646-105.51-51.659-167.931-51.659
+                                                        C3293.363,240.356,3271.162,253.709,3265.023,285.956z" />
+                                <circle fill="#F3D03E" cx="356.749" cy="356.748" r="356.748" />
+                                <path
+                                    d="M577.095,287.152l43.049-46.836h-95.465c-47.792-32.646-105.51-51.659-167.931-51.659
                                                         c-62.342,0-119.899,19.054-167.612,51.659H93.432l43.049,46.836c-26.387,24.075-42.929,58.754-42.929,97.259
                                                         c0,72.665,58.914,131.578,131.579,131.578c34.519,0,65.968-13.313,89.446-35.077l42.172,45.919l42.172-45.879
                                                         c23.478,21.764,54.887,35.037,89.406,35.037c72.665,0,131.658-58.913,131.658-131.578
@@ -137,19 +148,19 @@
                                                         s39.86-89.048,89.048-89.048s89.047,39.86,89.047,89.048S537.554,473.458,488.367,473.458z M488.367,337.694
                                                         c-25.79,0-46.677,20.887-46.677,46.677c0,25.789,20.887,46.676,46.677,46.676c25.789,0,46.676-20.887,46.676-46.676
                                                         C535.042,358.621,514.156,337.694,488.367,337.694z M271.846,384.411c0,25.789-20.887,46.676-46.676,46.676
-                                                        s-46.676-20.887-46.676-46.676c0-25.79,20.887-46.677,46.676-46.677C250.959,337.694,271.846,358.621,271.846,384.411z"/>
-                                                </g>
-                                            </svg>
-                        </div>
-                        {{-- config('app.name', 'Laravel') --}}
-                     </a>
+                                                        s-46.676-20.887-46.676-46.676c0-25.79,20.887-46.677,46.676-46.677C250.959,337.694,271.846,358.621,271.846,384.411z" />
+                            </g>
+                        </svg>
+                    </div>
+                    {{-- config('app.name', 'Laravel') --}}
+                </a>
 
-                     <div class="searchbox">
-                        <input class="navsearch" type="text">
-                        <button type="submit" class="btnsearch">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                     </div>
+                <div class="searchbox">
+                    <input class="navsearch" type="text">
+                    <button type="submit" class="btnsearch">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
             </div>
         </nav>
 
