@@ -15,7 +15,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::all();
+        return view('', compact('riviews'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $reviews = Review::all();
+        return view('', compact('reviews'));
     }
 
     /**
@@ -36,7 +38,9 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_review = Review::create();
+        return redirect()->route('');
     }
 
     /**
@@ -58,7 +62,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return view('', compact('review'));
     }
 
     /**
@@ -70,7 +74,8 @@ class ReviewController extends Controller
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
+        $data = $request->validated();
+        $review->update($data);
     }
 
     /**
@@ -81,6 +86,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        return redirect()->route('')->with('message', "$review->title cancellato");
     }
 }

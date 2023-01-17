@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
@@ -14,7 +15,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activity::all();
+        return view('', compact('activities'));
     }
 
     /**
@@ -23,7 +25,8 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        $activities = Activity::all();
+        return view('', compact('activities'));
     }
 
     /**
@@ -33,7 +36,18 @@ class ActivityController extends Controller
      */
     public function store(StoreActivityRequest $request)
     {
-        //
+        $data = $request->validated();
+        $slug = Activity::generateSlug($request->name);
+        $data['slug'] = $slug;
+        if($request->hasFile('img_cover')){
+            $path = Storage::disk('public')->put('img_cover', $request->img);
+            $data['img_cover'] = $path;
+        }
+        $new_activity = Activity::create($data);
+            if($request->has('tecnologies')){
+            $new_activity->tecnologies()->attach($request->tecnologies);
+        }
+        return redirect()->route('', $new_activity->slug);
     }
 
     /**
@@ -43,7 +57,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        //
+        return view('', compact('activity'));
     }
 
     /**
@@ -53,7 +67,8 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        $activities = Activity::all();
+        return view('', compact('activities'));
     }
 
     /**
@@ -64,7 +79,18 @@ class ActivityController extends Controller
      */
     public function update(UpdateActivityRequest $request, Activity $activity)
     {
-        //
+        $data = $request->validated();
+        $slug = Activity::createSlug($request->name);
+        $data['slug'] = $slug;
+        if ($request->hasFile('img')) {
+            if ($activity->img_cover) {
+                Storage::delete($activity->img_cover);
+            }
+            $path = Storage::disk('public')->put('img_cover', $request->img);
+            $data['img_cover'] = $path;
+        }
+            $activity->update($data);
+        return redirect()->route('', $activity->slug)->with('message', "$activity->name aggiornato");
     }
 
     /**
@@ -74,6 +100,7 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        //
+        $activity->delete();
+        return redirect()->route('')->with('mesage', "$activity->name cancellato");
     }
 }
