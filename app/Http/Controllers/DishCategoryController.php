@@ -15,8 +15,9 @@ class DishCategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $dishCategories = DishCategory::all();
+
+        return view('', compact('dishCategories'));
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +26,7 @@ class DishCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -36,7 +37,12 @@ class DishCategoryController extends Controller
      */
     public function store(StoreDishCategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_dishe = Dishe::create($data);
+
+
+
+        return redirect()->route('');
     }
 
     /**
@@ -47,7 +53,8 @@ class DishCategoryController extends Controller
      */
     public function show(DishCategory $dishCategory)
     {
-        //
+
+        return view('', compact('dishCategory'));
     }
 
     /**
@@ -58,7 +65,7 @@ class DishCategoryController extends Controller
      */
     public function edit(DishCategory $dishCategory)
     {
-        //
+        return view('', compact('dishCategory'));
     }
 
     /**
@@ -70,7 +77,10 @@ class DishCategoryController extends Controller
      */
     public function update(UpdateDishCategoryRequest $request, DishCategory $dishCategory)
     {
-        //
+        $data = $request->validated();
+
+        $dishCategory->update($data);
+        return redirect()->route('')->with('message', "$dishCategory->name aggiunta con successo.");
     }
 
     /**
@@ -81,6 +91,7 @@ class DishCategoryController extends Controller
      */
     public function destroy(DishCategory $dishCategory)
     {
-        //
+        $dishCategory->delete();
+        return redirect()->route('')->with('message', "$dishCategory->name rimossa con successo.");
     }
 }

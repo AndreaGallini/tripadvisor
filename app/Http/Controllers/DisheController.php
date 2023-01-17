@@ -11,54 +11,57 @@ class DisheController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $dishes = Dishe::all();
+
+        return view('', compact('dishes'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreDisheRequest  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreDisheRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_dishe = Dishe::create($data);
+
+
+
+        return redirect()->route('');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Dishe  $dishe
-     * @return \Illuminate\Http\Response
      */
     public function show(Dishe $dishe)
     {
-        //
+
+        return view('', compact('dishe'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Dishe  $dishe
-     * @return \Illuminate\Http\Response
      */
     public function edit(Dishe $dishe)
     {
-        //
+        return view('', compact('dishe'));
     }
 
     /**
@@ -66,21 +69,23 @@ class DisheController extends Controller
      *
      * @param  \App\Http\Requests\UpdateDisheRequest  $request
      * @param  \App\Models\Dishe  $dishe
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateDisheRequest $request, Dishe $dishe)
     {
-        //
+        $data = $request->validated();
+
+        $dishe->update($data);
+
+        return redirect()->route('')->with('message', "$dishe->name aggiunto con successo.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Dishe  $dishe
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Dishe $dishe)
     {
-        //
+
     }
 }
