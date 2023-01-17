@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('', compact('categories'));
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -36,7 +37,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+        $slug = Category::generateSlug($request->name);
+        $data['slug'] = $slug;
+        $new_category = Category::create($data);
+
+
+        return redirect()->route('', $new_category->id);
     }
 
     /**
@@ -47,18 +54,19 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category = Category::all();
+
+        return view('', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
     {
-        //
+        return view('', ['category' => $category]);
     }
 
     /**
@@ -66,11 +74,15 @@ class CategoryController extends Controller
      *
      * @param  \App\Http\Requests\UpdateCategoryRequest  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        $slug = Category::generateSlug($request->name);
+        $data['slug'] = $slug;
+        $category->update($data);
+        return redirect()->route('')->with('message', "$category->name aggiunta con successo.");
+    }
     }
 
     /**
@@ -81,6 +93,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('')->with('message', "$category->name rimosso con successo.");
     }
 }
