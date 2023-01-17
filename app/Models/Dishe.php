@@ -16,4 +16,8 @@ class Dishe extends Model
     {
        return $this->belongsTo(DishCategory::class);
     }
+        public function activity():BelongsTo
+    {
+       return $this->belongsTo(Activity::class);
+    }
 }

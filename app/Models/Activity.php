@@ -26,4 +26,8 @@ class Activity extends Model
         {
         return $this->belongsToMany(Category::class);
         }
+        public function dishes() :HasMany
+        {
+            return $this->hasMany(Dishe::class);
+        }
 }
