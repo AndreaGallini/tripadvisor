@@ -16,7 +16,7 @@ class ActivityController extends Controller
     public function index()
     {
         $activities = Activity::all();
-        return view('', compact('activities'));
+        return view('admin.activities.index', compact('activities'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ActivityController extends Controller
     public function create()
     {
         $activities = Activity::all();
-        return view('', compact('activities'));
+        return view('admin.activities.create', compact('activities'));
     }
 
     /**
@@ -47,7 +47,7 @@ class ActivityController extends Controller
             if($request->has('tecnologies')){
             $new_activity->tecnologies()->attach($request->tecnologies);
         }
-        return redirect()->route('', $new_activity->slug);
+        return redirect()->route('activities.index', $new_activity->slug);
     }
 
     /**
@@ -57,7 +57,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        return view('', compact('activity'));
+        return view('admin.activities.show', compact('activity'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ActivityController extends Controller
     public function edit(Activity $activity)
     {
         $activities = Activity::all();
-        return view('', compact('activities'));
+        return view('admin.activities.create', compact('activities'));
     }
 
     /**
