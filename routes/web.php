@@ -6,6 +6,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\DishCategoryController;
 use App\Http\Controllers\Admin\DisheController;
 
@@ -50,6 +51,10 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')
      Route::resource('dishes',DisheController::class);
     Route::resource('dishCategory',DishCategoryController::class);
     Route::resource('reviews',ReviewController::class);
+
+    Route::resource('reservations',ReservationController::class);
+
+
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
         Route::get('/guest', [GuestController::class, 'index'])->name('guest');
 
