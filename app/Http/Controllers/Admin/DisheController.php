@@ -18,16 +18,17 @@ class DisheController extends Controller
     {
         $dishes = Dishe::all();
 
-        return view('', compact('dishes'));
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      */
-    public function create()
+    public function create(StoreDisheRequest $request)
     {
-        return view('');
+        $dishes = Dishe::all();
+        return view('admin.dishes.create', compact('dishes'));
     }
 
     /**
@@ -38,11 +39,15 @@ class DisheController extends Controller
     public function store(StoreDisheRequest $request)
     {
         $data = $request->validated();
+
+        if($request->hasFile('image')){
+            $path = Storage::disk('public')->put('image', $request->image);
+            $data['image'] = $path;
+        }
+
         $new_dishe = Dishe::create($data);
 
-
-
-        return redirect()->route('');
+        return redirect()->route('admin.dishes.index');
     }
 
     /**
@@ -53,7 +58,7 @@ class DisheController extends Controller
     public function show(Dishe $dishe)
     {
 
-        return view('', compact('dishe'));
+        return view('admin.dishes.show', compact('dishe'));
     }
 
     /**
@@ -63,7 +68,7 @@ class DisheController extends Controller
      */
     public function edit(Dishe $dishe)
     {
-        return view('', compact('dishe'));
+        return view('admin.dishes.edit', compact('dishe'));
     }
 
     /**
@@ -75,6 +80,14 @@ class DisheController extends Controller
     public function update(UpdateDisheRequest $request, Dishe $dishe)
     {
         $data = $request->validated();
+
+        // if ($request->hasFile('image')) {
+        //     if ($dishe->image) {
+        //         Storage::delete($activity->img_cover);
+        //     }
+        //     $path = Storage::disk('public')->put('img_cover', $request->img);
+        //     $data['img_cover'] = $path;
+        // }
 
         $dishe->update($data);
 

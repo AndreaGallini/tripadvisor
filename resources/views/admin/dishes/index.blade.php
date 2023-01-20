@@ -19,22 +19,22 @@
     <section class="index-table">
         <div class="table-inner d-flex flex-column align-items-center">
             <div class="items-wrapper d-flex flex-wrap w-100">
-            @foreach($activities as $activity)
+            @foreach($dishes as $dish)
                     <div class="item d-flex flex-column justify-content-between align-items-center">
 
                         <div class="id-title d-flex justify-content-between align-items-center">
                             <div>
-                                <small># :</small> <span class="fs-2">{{$activity->id}}</span>
+                                <small># :</small> <span class="fs-2">{{$dish->id}}</span>
                             </div>
                             <div>
-                                <a href="{{route('admin.activities.show', $activity->slug)}}" title="View Activity" class="fs-4">
-                                    {{$project->title}}
+                                <a href="{{route('admin.dishes.show', $dish)}}" title="View Dish" class="fs-4">
+                                    {{$dish->name}}
                                 </a>
                             </div>
                         </div>
 
-                        <div class="project-preview-pic">
-                            @if(Str::startsWith($activity->image_cover, 'https://'))
+                        {{-- <div class="project-preview-pic">
+                            @if(Str::startsWith($dish->image, 'https://'))
                             <img src="{{$project->image_cover}}" alt="">
                             @elseif(Str::startsWith($activity->image_cover, 'activity'))
                             <img src="{{ asset('storage/' . $activity->image_cover) }}" alt="{{$activity->name}}">
@@ -43,11 +43,11 @@
                             @endif
                             <div class="glitched-layover"></div>
                             <a href="{{route('admin.activities.show', $activity->slug)}}" class="d-block pic-layover"></a>
-                        </div>
+                        </div> --}}
 
                         {{-- <div>{{Str::limit($activity->description,100)}}</div> --}}
 
-                        <div class="item-bottom d-flex justify-content-between">
+                        {{-- <div class="item-bottom d-flex justify-content-between">
                             <div class="d-flex align-items-center">
                                 <div><a class="edit-btn d-flex justify-content-center align-items-center" href="{{route('admin.activities.edit', $activity->slug)}}" title="Edit Activity"><i class="fa-solid fa-pen"></i></a></div>
                                 <div>
@@ -62,7 +62,7 @@
                                 <div>
                                     <i class="fa-solid fa-folder-open me-2"></i>
                                     {{$activity->category ? $activity->category->name : 'Senza categoria'}}
-                                </div>
+                                </div> --}}
                                 {{-- <div class="reviews">
                                     @foreach($activity->reviews as $reviews)
                                         <span class="tag rounded-pill text-uppercase" style="color: {{ $tag->tag_color }}; border-color: {{ $tag->tag_color }}">{{$tag->name}}</span>
