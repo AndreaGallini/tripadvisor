@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -12,22 +11,21 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
         $categories = Category::all();
-        return view('', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('');
+        return view('admin.categories.create');
     }
 
     /**
@@ -44,20 +42,20 @@ class CategoryController extends Controller
         $new_category = Category::create($data);
 
 
-        return redirect()->route('', $new_category->id);
+        return redirect()->route('admin.categories.index', $new_category->id);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     *
      */
     public function show(Category $category)
     {
         $category = Category::all();
 
-        return view('', compact('category'));
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -67,7 +65,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('', ['category' => $category]);
+        return view('admin.projects.edit', ['category' => $category]);
     }
 
     /**
@@ -82,7 +80,7 @@ class CategoryController extends Controller
         $slug = Category::generateSlug($request->name);
         $data['slug'] = $slug;
         $category->update($data);
-        return redirect()->route('')->with('message', "$category->name aggiunta con successo.");
+        return redirect()->route('admin.projects.index')->with('message', "$category->name aggiunta con successo.");
     }
 
 
@@ -90,12 +88,10 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('')->with('message', "$category->name rimosso con successo.");
+        return redirect()->route('admin.projects.index')->with('message', "$category->name rimosso con successo.");
     }
 }
-
