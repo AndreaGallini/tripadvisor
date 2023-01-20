@@ -101,7 +101,7 @@
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.dishes.index' ? 'active' : '' }}" href="{{route('admin.dishes.index')}}">Dishes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reservations.index' ? 'active' : '' }}" href="{{route('admin.reservations.index')}}">Reservations</a>
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.reservations.index' ? 'active' : '' }}" href="{{route('admin.reservations.index')}}">Reservations</a>
                     {{-- <a href="#">Reservations</a> --}}
                 </li>
                 <li class="nav-item">
