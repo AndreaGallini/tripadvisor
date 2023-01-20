@@ -1,64 +1,89 @@
 @extends('layouts.admin')
 
 @section('content')
-    <section id="createForm" class="d-flex justify-content-center align-items-center">
-        <form action="{{ route('activities.store') }}" method="POST"
-            class="d-flex flex-column justify-content-around align-items-center text-black create_container mt-4 text-white"
-            enctype="multipart/form-data">
+    <section id="create-form">
+        <form action="{{route('admin.activities.store')}}" method="POST" enctype="multipart/form-data" class="p-4">
             @csrf
-
-            <h1>Create new Activity</h1>
-
-            <div class="form-field d-flex flex-column align-items-center">
-                <label for="title">Name</label>
-                <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required minlength="3">
                 @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
-
-            {{-- <div class="form-field d-flex flex-column align-items-center mb-4">
-                <label for="description">Description</label>
-                <textarea id="description" name="description"></textarea>
-            </div> --}}
-
-            <div class="mb-3">
-                {{-- <div class="preview">
-                    <img id="uploadPreview" width="100" src="" alt="">
-                </div> --}}
-                <label for="img_cover">Project Img</label>
-                <input type="file" name="img_cover" id="img_cover" class="@error('img_cover') is-invalid @enderror">
+                <div class="form-text">* Minimo tre caratteri</div>
+              </div>
+              <div class="mb-3">
+                <label for="adress" class="form-label">Indirizzo</label>
+                <input type="text" class="form-control @error('adress') is-invalid @enderror" id="adress" name="adress" required>
+                @error('adress')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="phone_number" class="form-label">Numero di telefono</label>
+                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" required>
+                @error('phone_number')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Fascia Prezzo (opzionale)</label>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" required>
+                @error('price')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="website" class="form-label">Website</label>
+                <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" name="website" required>
+                @error('website')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              {{-- <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea rows="10" class="form-control" id="description" name="description"></textarea>
+              </div> --}}
+              <div class="mb-3">
+                <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
+                <label for="create_img_cover" class="form-label">Immagine</label>
+                <input type="file" name="img_cover" id="create_img_cover" class="form-control  @error('img_cover') is-invalid @enderror">
                 @error('img_cover')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
-
-            {{-- <div class="form-field">
-                <label for="category_id">Select category:</label>
+              </div>
+              {{-- <div class="mb-3">
+                <label for="category_id" class="form-label">Seleziona categoria</label>
                 <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                    <option value="">Select category</option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
+                    <option value="">Selezione categoria</option>
+                  @foreach ($categories as $category)
+                      <option value="{{$category->id}}" {{ $category->id == old('category_id') ? 'selected' : '' }}>{{$category->name}}</option>
+                  @endforeach
                 </select>
                 @error('category_id')
-                    <div class="invalid-feedback">{{$message}}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div> --}}
-
-            <div class="mb-3">
+              </div> --}}
+              {{-- <div class="mb-3">
                 <label for="categories" class="form-label">Categories</label>
                 <select multiple class="form-select" name="categories[]" id="categories">
-                    <option value="">Select Categories</option>
                     @forelse ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                     @empty
                         <option value="">No tag</option>
                     @endforelse
-                </select>
-            </div>
+                </select> --}}
 
-            <input type="submit" value="CREATE" class="btn btn-primary mt-3">
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="reset" class="btn btn-primary">Reset</button>
         </form>
     </section>
 @endsection
