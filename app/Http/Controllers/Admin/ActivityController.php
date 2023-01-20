@@ -49,7 +49,7 @@ class ActivityController extends Controller
             if($request->has('tecnologies')){
             $new_activity->tecnologies()->attach($request->tecnologies);
         }
-        return redirect()->route('activities.index', $new_activity->slug);
+        return redirect()->route('admin.activities.index', $new_activity->slug);
     }
 
     /**
@@ -104,6 +104,6 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         $activity->delete();
-        return redirect()->route('')->with('mesage', "$activity->name cancellato");
+        return redirect()->route('admin.activities.index')->with('message', "$activity->name cancellato");
     }
 }
