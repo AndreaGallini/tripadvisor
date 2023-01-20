@@ -1,10 +1,19 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
+
+
+//CONTROLLER ADMIN
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DishCategoryController;
-use App\Http\Controllers\DisheController;
+use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DishCategoryController;
+use App\Http\Controllers\Admin\DisheController;
+
+//CONTROLLER GUEST
+use App\Http\Controllers\ActivityController as GuestActivityController;
+use App\Http\Controllers\CategoryController as GuestCategoryController;
+use App\Http\Controllers\DishCategoryController as GuestDishCategoryController;
+use App\Http\Controllers\DisheController as GuestDisheController;
 use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;

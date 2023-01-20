@@ -68,7 +68,7 @@ class ActivityController extends Controller
     public function edit(Activity $activity)
     {
         $activities = Activity::all();
-        return view('admin.activities.create', compact('activities'));
+        return view('admin.activities.edit', compact('activities'));
     }
 
     /**
