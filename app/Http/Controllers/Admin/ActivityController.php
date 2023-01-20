@@ -42,7 +42,7 @@ class ActivityController extends Controller
         $slug = Activity::generateSlug($request->name);
         $data['slug'] = $slug;
         if($request->hasFile('img_cover')){
-            $path = Storage::disk('public')->put('img_cover', $request->img);
+            $path = Storage::disk('public')->put('img_cover', $request->img_cover);
             $data['img_cover'] = $path;
         }
         $new_activity = Activity::create($data);
@@ -69,8 +69,9 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        $activities = Activity::all();
-        return view('admin.activities.create', compact('activities'));
+        // dd($activity);
+        // $activities = Activity::all();
+        return view('admin.activities.edit', compact('activity'));
     }
 
     /**

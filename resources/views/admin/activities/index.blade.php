@@ -83,8 +83,73 @@
 @endsection --}}
 @extends('layouts.admin')
 @section('content')
-    <h1>index</h1>
-    @foreach ($activities as $activity)
-        <p>{{ $activity->name }}</p>
-    @endforeach
+    <section id="admin-index">
+        <nav class="d-flex justify-content-start align-items-center container">
+            <h2 class="me-3">TripAdvisor - Admin Office:</h2>
+            <ul class="d-flex justify-content-between align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.activities.index' ? 'active' : '' }}" href="{{route('admin.activities.index')}}">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}" href="{{route('admin.categories.index')}}">Categories</a>
+                </li>
+                <li class="nav-item">
+                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dishCategories.index' ? 'active' : '' }}" href="{{route('admin.dishCategories.index')}}">Dish Categories</a> --}}
+                    <a href="#">Dish Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.dishes.index' ? 'active' : '' }}" href="{{route('admin.dishes.index')}}">Dishes</a>
+                </li>
+                <li class="nav-item">
+                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reservations.index' ? 'active' : '' }}" href="{{route('admin.reservations.index')}}">Reservations</a> --}}
+                    <a href="#">Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.reviews.index' ? 'active' : '' }}" href="{{route('admin.reviews.index')}}">Reviews</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="create-new">
+            <a href="{{route('admin.activities.create')}}" class="btn btn-outline-success">New Activity</a>
+        </div>
+        <div class="activities-list mt-1">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($activities as $activity)
+                        <tr>
+                            <th scope="row">{{$activity->id}}</th>
+                            <td><a href="{{route('admin.activities.show', $activity->slug)}}" title="View Activity">{{$activity->name}}</a></td>
+                            {{-- <td>{{Str::limit($activity->description,100)}}</td> --}}
+                            <td>{{$activity->categories && count($activity->categories) > 0 ? count($activity->categories) : 0}}</td>
+                            <td>{{$activity->adress}}</td>
+                            <td>{{$activity->phone_number}}</td>
+                            <td>{{$activity->email}}</td>
+                            <td>{{$activity->website}}</td>
+                            <td><a class="link-secondary" href="{{route('admin.activities.edit', $activity->slug)}}" title="Edit Activity">Edit</a></td>
+                            <td>
+                                <form action="{{route('admin.activities.destroy', $activity->slug)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-button btn btn-danger ms-3" data-item-title="{{$activity->name}}">Delete</button>
+                             </form>
+                            </td>
+                        </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </section>
 @endsection
