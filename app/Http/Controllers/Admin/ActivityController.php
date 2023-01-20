@@ -46,7 +46,7 @@ class ActivityController extends Controller
             $data['img_cover'] = $path;
         }
         $new_activity = Activity::create($data);
-            if($request->has('tecnologies')){
+        if($request->has('tecnologies')){
             $new_activity->tecnologies()->attach($request->tecnologies);
         }
         return redirect()->route('admin.activities.index', $new_activity->slug);
